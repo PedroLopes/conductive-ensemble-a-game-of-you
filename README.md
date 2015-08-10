@@ -1,13 +1,28 @@
 # conductive-ensemble
-conductive-ensemble is a series of on goin performances by Pedro Lopes,
-the idea revolves around the notions of control and social networks (of control)
-
+conductive-ensemble is a series of on going performances by Pedro Lopes, in which musicians are controlled by the audience. 
+This is a critical piece about the notion of control and social networks (which exert another type of control).
 
 setting:
-on stage, a quartet of musicians is controlled by the audience smartphones.
+On stage, a quartet of musicians is controlled by the audience smartphones.
+To interact, audience simply opens their browser and taps on buttons to decide which musician they want to "play" with. 
 
 get in touch:
 plopes.org // plopesmusic.org
 
 created for: 
 www.disruptionlab.org/a-game-of-you
+
+Musicians of the first iteration: (which are in the code too)
+Rui Nogueiro // bass
+Pedro Lopes // turntable percussion
+Stefan Brunner // processed guitar
+Emílio Gordoa // extended vibraphone
+
+thanks to:
+Gabriel S. Moses (also a dedication to his work)
+Desirée Föster
+Alexandra Ion 
+David Lindlbauer
+SPEKTRUM BERLIN (Alfredo & Lieke)
+DNL (Disruption Network Lab)
+
