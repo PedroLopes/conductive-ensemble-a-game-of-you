@@ -24,7 +24,7 @@ Emílio Gordoa // extended vibraphone
 
 thanks to:
 Gabriel S. Moses (also a dedication to his work) //
-Desirée Föster //
+Desirée Förster //
 Alexandra Ion //
 David Lindlbauer // 
 SPEKTRUM BERLIN (Alfredo & Lieke) //
