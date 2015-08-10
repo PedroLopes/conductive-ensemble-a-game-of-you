@@ -11,14 +11,21 @@ To interact, audience simply opens their browser and taps on buttons to decide w
 get in touch:
 plopes.org // plopesmusic.org
 
+
 created for: 
 www.disruptionlab.org/a-game-of-you
 
+
 Musicians of the first iteration: (which are in the code too)
+
 Rui Nogueiro // bass
+
 Pedro Lopes // turntable percussion
+
 Stefan Brunner // processed guitar
+
 Emílio Gordoa // extended vibraphone
+
 
 thanks to:
 Gabriel S. Moses (also a dedication to his work)
