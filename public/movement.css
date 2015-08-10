@@ -1,0 +1,388 @@
+body {
+    color: #526066;
+}
+
+h2, h3 {
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+p {
+    line-height: 1.6em;
+}
+
+
+.l-content {
+    margin: 0 auto;
+}
+
+.l-box {
+    padding: 0.5em 2em; /* 0.5em 2em */
+}
+
+.pure-menu {
+    box-shadow: 0 1px 1px rgba(0,0,0, 0.10);
+}
+
+
+/*
+ * -- BANNER --
+ * The top banner with the headings. By using a combination
+ * of `display: table;` and `display: table-cell;`, we can
+ * vertically center the text.
+ */
+
+.banner {
+    /* background: transparent url('http://24.media.tumblr.com/ccb268832580ac12951828a1c179de69/tumblr_mo2xbk8JUK1st5lhmo1_1280.jpg') 0 0 no-repeat fixed; */
+    /*background: transparent url('bg.jpg') 0 0 no-repeat fixed;*/
+    text-align: left; /*center */
+    /*background-size: cover;*/
+    /*filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='bg.jpg', sizingMethod='scale'); */
+    /* filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://24.media.tumblr.com/ccb268832580ac12951828a1c179de69/tumblr_mo2xbk8JUK1st5lhmo1_1280.jpg', sizingMethod='scale'); */
+
+    height: 100px; /*100*/
+    width: 100%; 
+    margin-bottom: 1em;
+    display: table;
+}
+
+    .banner-head {
+        display: table-cell;
+        vertical-align: middle;
+        margin-bottom: 0;
+        font-size: 1em; /*2*/
+        color: white;
+        font-weight: 200; /*500*/
+        text-shadow: 0 1px 1px black;
+    }
+
+
+
+/*
+ * -- PRICING TABLE WRAPPER --
+ * This element wraps up all the pricing table elements
+ */
+ .pricing-tables,
+ .information {
+    max-width: 980px;
+    margin: 0 auto;
+ }
+.pricing-tables {
+    margin-bottom: 3.125em; 
+    text-align: center;
+}
+
+/*
+ * -- PRICING TABLE  --
+ * Every pricing table has the .pricing-table class
+ */
+.pricing-table {
+    border: 1px solid #ddd;
+    margin: 0 0.5em 2em;
+    padding: 0 0 3em;
+}
+
+/*
+ * -- PRICING TABLE HEADER COLORS --
+ * Choose a different color based on the type of pricing table.
+ */
+.pricing-table-free .pricing-table-header {
+    background: #519251;
+}
+
+.pricing-table-biz .pricing-table-header {
+    background: #2c4985;
+}
+
+/*
+ * -- PRICING TABLE HEADER --
+ * By default, a header is black/white, and has some styles for its <h2> name.
+ */
+.pricing-table-header {
+    background: #111; /**/
+    color: #fff; /**/
+}
+    .pricing-table-header h2 {
+        margin: 0;
+        padding-top: 1em;
+        /*padding-bottom: 1em;*/
+        font-size: 1em;
+        font-weight: normal;
+
+    }
+
+
+/*
+ * -- PRICING TABLE PRICE --
+ * Styles for the price and the corresponding <span>per month</span>
+ */
+.pricing-table-price {
+    font-size: 6em;
+    margin: 0.2em 0 0;
+    font-weight: 100;
+}
+    .pricing-table-price span {
+        display: block;
+        text-transform: uppercase;
+        font-size: 0.2em;
+        padding-bottom: 1em;
+        font-weight: 400;
+        color: rgba(255, 255, 255, 0.5); /**/
+        *color: #fff; /**/
+    }
+
+
+
+/*
+ * -- PRICING TABLE LIST --
+ * Each pricing table has a <ul> which is denoted by the .pricing-table-list class
+ */
+.pricing-table-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+
+/*
+ * -- PRICING TABLE LIST ELEMENTS --
+ * Styles for the individual list elements within each pricing table
+ */
+.pricing-table-list li {
+    padding: 0.8em 0;
+    background: #f7f7f7;
+    border-bottom: 1px solid #e7e7e7;
+}
+
+
+/*
+ * -- PRICING TABLE BUTTON --
+ * Styles for the "Choose" button at the bottom of a pricing table.
+ * This inherits from Pure Button.
+ */
+.button-choose {
+    border: 1px solid #ccc;
+    background: #fff;
+    color: #333;
+    border-radius: 2em;
+    font-weight: bold;
+    position: relative;
+    bottom: -1.5em;
+}
+
+.information-head {
+    color: black;
+    font-weight: 500;
+}
+
+.footer {
+    background: #111;
+    color: #888;
+    text-align: center;
+}
+    .footer a {
+        color: #ddd;
+    }
+
+
+
+/*
+ * -- TABLET MEDIA QUERIES --
+ * On tablets, we want to slightly adjust the size of the banner
+ * text and add some vertical space between the various pricing tables
+ */
+@media(min-width: 767px) {
+
+    .banner-head {
+        font-size: 4em;
+    }
+    .pricing-table {
+        margin-bottom: 0;
+    }
+
+}
+
+/*
+ * -- PHONE MEDIA QUERIES --
+ * On phones, we want to reduce the height and font-size of the banner further
+ */
+@media (min-width: 480px) {
+    .banner {
+        height: 400px;
+    }
+    .banner-head {
+        font-size: 3em;
+    }
+}
+
+
+body{
+  background:black;
+  font-family: 'Varela', sans-serif;
+}
+
+.glitch {
+  color: white;
+  font-size: 50px; /*100*/
+  position: relative; /**/
+  width: 400px;  /**/
+  margin: 0em 0.1em auto; /*0*/
+}
+
+@keyframes noise-anim {
+  0% {
+    clip: rect(73px, 9999px, 83px, 0);
+  }
+  5% {
+    clip: rect(9px, 9999px, 41px, 0);
+  }
+  10% {
+    clip: rect(63px, 9999px, 93px, 0);
+  }
+  15.0% {
+    clip: rect(48px, 9999px, 13px, 0);
+  }
+  20% {
+    clip: rect(92px, 9999px, 12px, 0);
+  }
+  25% {
+    clip: rect(6px, 9999px, 68px, 0);
+  }
+  30.0% {
+    clip: rect(76px, 9999px, 43px, 0);
+  }
+  35% {
+    clip: rect(77px, 9999px, 59px, 0);
+  }
+  40% {
+    clip: rect(89px, 9999px, 42px, 0);
+  }
+  45% {
+    clip: rect(28px, 9999px, 30px, 0);
+  }
+  50% {
+    clip: rect(40px, 9999px, 62px, 0);
+  }
+  55.0% {
+    clip: rect(70px, 9999px, 83px, 0);
+  }
+  60.0% {
+    clip: rect(55px, 9999px, 71px, 0);
+  }
+  65% {
+    clip: rect(45px, 9999px, 87px, 0);
+  }
+  70% {
+    clip: rect(65px, 9999px, 46px, 0);
+  }
+  75% {
+    clip: rect(6px, 9999px, 32px, 0);
+  }
+  80% {
+    clip: rect(90px, 9999px, 9px, 0);
+  }
+  85.0% {
+    clip: rect(18px, 9999px, 56px, 0);
+  }
+  90% {
+    clip: rect(60px, 9999px, 34px, 0);
+  }
+  95% {
+    clip: rect(38px, 9999px, 38px, 0);
+  }
+  100% {
+    clip: rect(30px, 9999px, 75px, 0);
+  }
+}
+.glitch:after {
+  content: attr(data-text);
+  position: absolute;
+  left: 2px;
+  text-shadow: -1px 0 red;
+  top: 0;
+  color: white;
+  background: black;
+  overflow: hidden;
+  clip: rect(0, 900px, 0, 0);
+  animation: noise-anim 2s infinite linear alternate-reverse;
+}
+
+@keyframes noise-anim-2 {
+  0% {
+    clip: rect(27px, 9999px, 86px, 0);
+  }
+  5% {
+    clip: rect(82px, 9999px, 30px, 0);
+  }
+  10% {
+    clip: rect(19px, 9999px, 93px, 0);
+  }
+  15.0% {
+    clip: rect(79px, 9999px, 71px, 0);
+  }
+  20% {
+    clip: rect(46px, 9999px, 77px, 0);
+  }
+  25% {
+    clip: rect(98px, 9999px, 35px, 0);
+  }
+  30.0% {
+    clip: rect(46px, 9999px, 8px, 0);
+  }
+  35% {
+    clip: rect(71px, 9999px, 73px, 0);
+  }
+  40% {
+    clip: rect(54px, 9999px, 37px, 0);
+  }
+  45% {
+    clip: rect(40px, 9999px, 90px, 0);
+  }
+  50% {
+    clip: rect(6px, 9999px, 19px, 0);
+  }
+  55.0% {
+    clip: rect(93px, 9999px, 2px, 0);
+  }
+  60.0% {
+    clip: rect(50px, 9999px, 24px, 0);
+  }
+  65% {
+    clip: rect(91px, 9999px, 46px, 0);
+  }
+  70% {
+    clip: rect(59px, 9999px, 20px, 0);
+  }
+  75% {
+    clip: rect(10px, 9999px, 59px, 0);
+  }
+  80% {
+    clip: rect(36px, 9999px, 9px, 0);
+  }
+  85.0% {
+    clip: rect(67px, 9999px, 25px, 0);
+  }
+  90% {
+    clip: rect(34px, 9999px, 45px, 0);
+  }
+  95% {
+    clip: rect(21px, 9999px, 23px, 0);
+  }
+  100% {
+    clip: rect(54px, 9999px, 80px, 0);
+  }
+}
+.glitch:before {
+  content: attr(data-text);
+  position: absolute;
+  left: -2px;
+  text-shadow: 1px 0 blue;
+  top: 0;
+  color: white;
+  background: black;
+  overflow: hidden;
+  clip: rect(0, 900px, 0, 0);
+  animation: noise-anim-2 3s infinite linear alternate-reverse;
+}

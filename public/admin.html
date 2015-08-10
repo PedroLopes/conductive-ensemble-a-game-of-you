@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="admin page">
+
+<title id="movement_number_top">loading...</title>
+<link rel="stylesheet" href="pure-min.css">
+<link rel="stylesheet" href="grids-responsive-min.css">
+<link rel="stylesheet" href="movement.css">
+<link rel="stylesheet" href="csshake.min.css">
+<!--<link href='http://fonts.googleapis.com/css?family=Varela' rel='stylesheet' type='text/css'>-->
+<script src="hyperlink.js"></script>
+<script src='/faye/client.js'></script>
+<script>
+    var movement_number = 0;
+    var glitched_counter_increment_low = 1;
+    var glitched_counter_increment_high = 9;
+    var hyperlink_passedOne = false;
+    var charGlitchesMax = 2;
+
+    var client = new Faye.Client('/faye',{
+        timeout: 20
+    });
+
+    function changeDisplay(id, propertyValue) {
+                //document.getElementById(id).style.display = 'block';
+                document.getElementById(id).style.display = propertyValue;
+    }
+
+    function randomInt (low, high) {
+        return Math.floor(Math.random() * (high - low) + low);
+    }
+
+    client.subscribe('/movement_number', function(message) {
+        movement_number = message.text;
+        if (movement_number == 7) window.location.replace("http://"+ final_url+ ":"+5001+'/'); 
+        replaceElementText("movement_number","part "+message.text);
+        replaceElementText("movement_number_top",message.text);
+        replaceElementText("movement_title","#" + movement_number + ":" + movements[movement_number]); 
+        replaceElementText("subtext",subtexts[message.text]); 
+        for (var m in musicians) { 
+                if (movement_number == 5 || movement_number == 6) { //only for firewalls
+                    replaceElementText(m, action_texts[message.text] + " [" + (max_firewall-firewalls[musicians[m]]) + "/" + max_firewall + "]");
+                    document.getElementById(m).style.color = "black";
+                }
+                else {
+                    replaceElementText(m, action_texts[message.text]);
+                } 
+                    
+        }
+        if (movement_number == 6) {
+            activateGlitches();
+            stop_firewall_count_glitch = false;
+            setTimeout(function() {glitch_firewall_counts();}, 200);
+        } else if (movement_number == 3) {
+            setTimeout(function() {clear_virus_forward();}, 1000);
+            setTimeout(function() {clear_virus_forward();}, 5000);
+            setTimeout(function() {clear_virus_forward();}, 10000);
+        }
+        else stop_firewall_count_glitch = true;
+    });
+
+    function glitch_firewall_counts(){
+        if (!stop_firewall_count_glitch) setTimeout(function() {glitch_firewall_counts();}, 200);
+        for (var m in musicians) { 
+            var rand = randomInt(glitched_counter_increment_low,glitched_counter_increment_high);
+            firewalls[musicians[m]] = firewalls[musicians[m]] + glitched_counter_increment_high;  
+            max_firewall = max_firewall + rand;
+            replaceElementText(m, action_texts[movement_number] + " [" + (max_firewall-firewalls[musicians[m]]) + "/" + max_firewall + "]");
+            for (var i=0;i<charGlitchesMax;i++){
+                var rand = randomInt(0,10);
+                var charRand = makeOneChar();
+                var toGlitch = setCharAt(musicians_name[m],rand, charRand);
+                replaceElementText(m+"_name", toGlitch);
+            }
+        }
+    }
+
+    function setCharAt(str,index,chr) {
+        if(index > str.length-1) return str;
+        return str.substr(0,index) + chr + str.substr(index+1);
+    }
+
+    client.subscribe('/glitch_same', function(message) {
+        var zombies = document.getElementsByName("zombie");
+        for (i = 0; i < zombies.length; i++) {
+            zombies[i].setAttribute('data-text',zombies[i].innerHTML); //awakes zombies
+        }
+    });
+
+    function activateGlitches(){
+        var zombies = document.getElementsByName("zombie");
+        for (i = 0; i < zombies.length; i++) {
+            zombies[i].setAttribute('data-text',zombies[i].innerHTML); //awakes zombies
+        }
+    }
+
+    client.subscribe('/glitch_message', function(message) {
+        var zombies = document.getElementsByName("zombie");
+        for (i = 0; i < zombies.length; i++) {
+            zombies[i].setAttribute('data-text',"#" + movement_number + ":" +  message.text); //awakes zombies
+        }
+    });
+
+    function makeOneChar()
+    {
+        var text = "";
+        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+        return text;
+    }
+
+
+    
+
+</script>
+</head>
+<body bgcolor="#FFFFFF"> 
+
+ <div class="banner">
+    <h1 class="banner-head" > 
+        <!--<br><br><br><br><br>-->
+        <div name="zombie" id="movement_title" class="glitch" data-text="">ACCESS</div>
+        <div name="zombie" id="subtext">accessing...</div>
+        <!--<div name="zombie" id="movement_number" class="glitch" data-text="">loading...</div>--> 
+    </h1>
+</div> 
+<div class="l-content">
+    <div class="pricing-tables pure-g">
+        <div class="pure-u-1 pure-u-md-1-3">
+            <div class="pricing-table pricing-table-free">
+                <div class="pricing-table-header">
+                    <h2 id="rui_name">rui nogueiro</h2>
+
+                    <span class="pricing-table-price">
+                         <span>bass</span>
+                    </span>
+                </div>
+
+            <div align="center">
+                <button class="button-choose pure-button" id="rui" onclick="execute(this.id,movements[movement_number])">test</button>
+            </div>
+            </div>
+        </div>
+
+        <div class="pure-u-1 pure-u-md-1-3">
+            <div class="pricing-table pricing-table-biz pricing-table-selected">
+                <div class="pricing-table-header">
+                    <h2 id="pedro_name">pedro lopes</h2>
+
+                    <span class="pricing-table-price">
+                         <span>turntables</span>
+                    </span>
+                </div>
+
+                <div align="center">
+                    
+                    <button class="button-choose pure-button" id="pedro" onclick="execute(this.id,movements[movement_number])">test</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="pure-u-1 pure-u-md-1-3">
+            <div class="pricing-table pricing-table-enterprise">
+                <div class="pricing-table-header">
+                    <h2 id="stefan_name">stefan brunner</h2>
+
+                    <span class="pricing-table-price">
+                        <span>guitar</span>
+                    </span>
+                </div>
+
+                <div align="center">
+                    <button class="button-choose pure-button" id="stefan" onclick="execute(this.id,movements[movement_number])">test</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="pure-u-1 pure-u-md-1-3">
+            <div class="pricing-table pricing-table-enterprise">
+                <div class="pricing-table-header">
+                    <h2 id="emilio_name">emilio gordoa</h2>
+
+                    <span class="pricing-table-price">
+                        <span>vibraphone</span>
+                    </span>
+                </div>
+
+                <div align="center">
+                    <button class="button-choose pure-button" id="emilio" onclick="execute(this.id,movements[movement_number])">test</button>
+                </div>
+            </div>
+        </div>
+
+    </div> 
+
+</body>
+</html>

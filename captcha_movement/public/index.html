@@ -1,0 +1,122 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="stop.css">
+		<script src='/faye/client.js'></script>
+		<title>try to stop us...</title>
+
+		<style>.ac {
+		text-align: left;
+		padding:20px;
+		background:black;
+  		/*font-family: 'Varela', sans-serif;*/
+		}
+		</style>
+	</head>
+
+	<body class="ac">
+
+		<div class="glitch" id="end"></div>
+		<div id="everything">
+			<div class="glitch">just try to<br>stop us...</div><br>
+			<!--<div class="glitch" data-text="just try to">just try to</div>
+			<div class="glitch" data-text="stop us">stop us</div>-->
+			<br>
+			<image src="/captcha" alt="captcha" title="click to refresh" data-url="/captcha" class="captcha"></image>
+			<br>
+			<input name="captcha" type="text" placeholder="double dare you.">
+			<br>
+			<table>
+				<tr>
+					<td><button type="button">c'mon try</button></td>
+					<td><div id="result"></div></td>
+				</tr>
+			</table>
+			<br><br>
+
+			<div class="glitch">all together<br>you craked</div>
+			<!--<div class="glitch" id="update" data-text="3">3</div>-->
+			<div class="glitch" name="dynamic" id="update" data-text="3">3</div>
+			<div class="glitch">captchas.</div>
+			<div class="glitch">keep it up.</div>
+		</div>
+
+		<script src="jquery-1.11.1.min.js"></script>
+		<script>
+
+			var client = new Faye.Client('/faye',{
+        		timeout: 20
+    		});
+
+    		function changeDisplay(id, propertyValue) {
+    			//document.getElementById(id).style.display = 'block';
+    			document.getElementById(id).style.display = propertyValue;
+			}
+
+    		function replaceElementText(id, text)
+			{
+			  if (document.getElementById)
+			  {
+			    var e=document.getElementById(id);
+			    if (e)
+			    {
+			      if (e.childNodes[0])
+			      {
+			        e.childNodes[0].nodeValue=text;
+			      }
+			      else if (e.value)
+			      {
+			        e.value=text;
+			      }
+			      else //if (e.innerHTML)
+			      {
+			        //alert("3");
+			        e.innerHTML=text;
+			      }
+			    }
+			  }
+			}
+
+		    client.subscribe('/update', function(message) {
+		        replaceElementText("update",message.text);
+				var glitches = document.getElementsByName("dynamic");
+        		for (i = 0; i < glitches.length; i++) {
+            		glitches[i].setAttribute('data-text',message.text); 
+        		}
+        	});
+
+        	client.subscribe('/end', function(message) {
+        		document.getElementById("everything").style.display = 'none';
+		        replaceElementText("end",message.text);
+        	});
+
+		    function writeResult(message){
+		    	replaceElementText("result",message);
+		    }
+
+			//refresh
+			$('.captcha').click(function() {
+				var t = $(this)
+				,url = t.data('url')
+				t.prop('src', url + '?_=' + (new Date().getTime()))
+			})
+
+			//validate captcha
+			$('button').click(function() {
+				$.ajax({
+					url: '/'
+					,data: {
+						captcha: $('[name="captcha"]').val()
+					}
+					,type: 'post'
+					,success: function(res) {
+						writeResult(res)
+						$('.captcha').trigger('click')
+					}
+				})
+			})
+		</script>
+	</body>
+</html>
