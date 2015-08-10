@@ -2,6 +2,8 @@
 conductive-ensemble is a series of on going performances by Pedro Lopes, in which musicians are controlled by the audience. 
 This is a critical piece about the notion of control and social networks (which exert another type of control).
 
+![Alt text](images/condictive1.jpg?raw=true "Musicians under control of the audience")
+
 setting:
 On stage, a quartet of musicians is controlled by the audience smartphones.
 To interact, audience simply opens their browser and taps on buttons to decide which musician they want to "play" with. 
