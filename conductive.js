@@ -26,20 +26,13 @@ var movements = {
   7: "crowdsource"
 };
 
-//i think this is not used anymore
-var rui = 1;
-var pedro = 2;
-var stefan = 3;
-var emilio = 4; 
-
 //URLs
-//var final_url = "192.168.1.4"; //home
-var final_url = "192.168.1.120"; //HCI-Haptics
+var final_url = "192.168.1.120"; 
 
 //ems scripts (python)
-var location_exec = "/Users/pedro/Dropbox/1.projects/1.MusclePropelledHaptics/code/mobile_haptics/understandingems/demos/python-interface/simple-scripts/";
+var location_exec = "simple-scripts/";
 location_exec = "cd " + location_exec + ";";
-var ems_exec = "python conductive_ems.py /dev/tty.usbserial-HMYID101";
+var ems_exec = "python conductive_ems.py /dev/tty.usbserial";
 var exec_maxs = 2; //max python scripts at once 
 var current_execs = 0; //make sure python scripts dont go all parallel style
 var exec_maxs_restore_timer = [2000,2000,4000,1000,1000,4000,4000,4000]; //timers per movemnt
@@ -52,22 +45,12 @@ var pairs_stop = ["12", "21", "13", "31", "14", "41", "23", "32", "24", "42", "3
 var pairs_values_stop = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 var current_fav_start = "00";
 
-
 //MESSAGE PROTOCOL // below are vars for eval (these correspond to message protocol)
-var zap = "zap";
 var movement_id = 0;
-var link = "link";
 var start = "start";
-var part = "part";
 var others ="12";
-var poke = "poke";
-var DDOS = "DDOS";
-var virality = "virality";
 var previous_part = "previous_part";
 var next_part = "next_part";
-var firewall = "firewall";
-var loading = "loading";
-var hyperlink = "hyperlink";
 var lineReader = require('line-reader');
 
 var bayeux = new faye.NodeAdapter({
@@ -171,7 +154,6 @@ function requestHandler(req, res) {
 		var fileName = path.basename(req.url) || 'index.html';
 		var ext = path.extname(fileName);
 		var localFolder = __dirname + '/public/';
-		//var page404 = localFolder + '404.html';
 
 		if(!extensions[ext]){ //404
 			res.writeHead(404, {'Content-Type': 'text/html'});
@@ -207,7 +189,6 @@ bayeux.on('disconnect', function(clientId) {
 
 
 bayeux.on('subscribe', function(clientId,channel) {
-	//if (DEBUG) console.log('[SUBSCRIBE FROM CLIENT] ' + clientId + ' -> ' + ' -> ');
 	if (DEBUG) console.log('[SUBSCRIBE FROM CLIENT] ' + clientId + ' -> ' + channel + ' -> ');
 	if (channel == "/movement_number")  {
 		if (DEBUG) console.log("send all clients the news");
@@ -224,13 +205,10 @@ bayeux.on('publish', function(clientId, channel, data) {
 		var stop_2 = data.stop_2;
 		var start_1 = data.start_1;
 		var start_2 = data.start_2;
-		//if (DEBUG) console.log(start_1 + start_2 + stop_1 + stop_2);	
-		//execute voting
 		var index_start = pairs_start.indexOf(start_1 + start_2);
 		pairs_values_start[index_start]++;
 		var index_stop = pairs_stop.indexOf(stop_1 + stop_2);
 		pairs_values_stop[index_stop]++;
-		//if (DEBUG) console.log("a"+pairs_values_stop[index_stop]);	
 		var max = 0;
 		var max_index = 0;
 		for (var i = 0; i < pairs_values_start.length; i++) {
@@ -272,7 +250,6 @@ bayeux.on('publish', function(clientId, channel, data) {
 	} 
 	else { 
 	  	var musician_id = data.musician_id;
-	  	//if (DEBUG) console.log(musician_id);
 		if (movement_id == 1) { //poke
 			if (isOneDigit(musician_id)){
 				if (DEBUG) console.log("poke received" + musician_id);
